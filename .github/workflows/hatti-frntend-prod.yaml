@@ -16,7 +16,7 @@ jobs:
         with:
           repository: 'Project-50/hattimatim-frontend'
           ref: refs/tags/main
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Get brandh tag
         id: vars
