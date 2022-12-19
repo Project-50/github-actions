@@ -16,7 +16,7 @@ jobs:
         with:
           repository: 'Project-50/hattimatim-frontend'
           ref: refs/tags/main
-          token: ${{ secrets.GitHub_PAT }}
+          
           
       - name: Get brandh tag
         id: vars
@@ -27,12 +27,4 @@ jobs:
       - name: Build and push image to Docker Hub
         run: |
           docker build . -t arnobdev/hattimatim-frontend:${{ steps.vars.outputs.tag }}
-          docker push arnobdev/hattimatim-frontend:${{ steps.vars.outputs.tag }}
-      - name: Push the build image to the DO kubectl
-        uses: arn-ob/do-kubectl-action@main
-        with:
-          do_access_token: ${{ secrets.DO_ACCESS_TOKEN }}
-          do_cluster_certificate: ${{ secrets.DO_CLUSTER_CERTIFICATE }}
-          do_deployment_name: hattimatim-frontend-app
-          do_container_name: hattimatim-frontend-app
-          do_image_tag: arnobdev/hattimatim-frontend:${{ steps.vars.outputs.tag }}
+          
