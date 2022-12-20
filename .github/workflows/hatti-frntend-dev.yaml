@@ -1,0 +1,29 @@
+name: Production Hattimatim
+
+on: 
+  push:
+    branches:
+      -  main
+
+jobs:
+  Deploy:
+    name: Hattimatim FrontEnd Deploy Process
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: 'Project-50/hattimatim-frontend'
+          ref: dev
+          
+      - name: Get brandh tag
+        id: vars
+        shell: bash
+        run: |
+          echo "::set-output name=tag::${GITHUB_REF#refs/heads/}-$(git rev-parse --short HEAD)"
+
+      - name: Build and push image to Docker Hub
+        run: |
+          docker build . -t arnobdev/hattimatim-frontend:${{ steps.vars.outputs.tag }}
+          
