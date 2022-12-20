@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: 'Project-50/hattimatim-frontend'
-          ref: 'dev'
+          ref: dev
           
       - name: Get brandh tag
         id: vars
