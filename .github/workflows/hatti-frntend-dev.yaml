@@ -3,7 +3,7 @@ name: Production Hattimatim
 on: 
   push:
     branches:
-      -  main
+      -  hatti-dev
 
 jobs:
   Deploy:
